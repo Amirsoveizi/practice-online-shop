@@ -1,0 +1,20 @@
+.cutom-btn-small {
+    font-size: 30px;
+    padding-left: 4px;
+    /* display: none; */
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.red {
+    position: relative;
+    color: red;
+    top: -2px;
+}
+
+.blue {
+    color: blue;
+}
