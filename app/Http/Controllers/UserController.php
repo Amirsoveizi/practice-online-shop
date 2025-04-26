@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Route;
-
+use App\Models\Log;
 class UserController extends Controller
 {
     function create() {
@@ -33,5 +32,9 @@ class UserController extends Controller
         }
 
         redirect()->to(Route('admin.user.index'));
+    }
+
+    function info($id) {
+        dd(Log::where('user_id',$id)->all());
     }
 }

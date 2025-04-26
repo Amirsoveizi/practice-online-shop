@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\AuthLogger;
+use App\Http\Middleware\UserLogger;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -9,7 +11,7 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('admin')->middleware(['auth:web'])->group(function () {
+Route::prefix('admin')->middleware(['auth:web',UserLogger::class])->group(function () {
     Route::view('/', 'admin.index');
     Route::get('/logout',[AuthController::class,'logout'])->name('user.logout');
     Route::prefix('user')->group(function () {
@@ -19,11 +21,12 @@ Route::prefix('admin')->middleware(['auth:web'])->group(function () {
         Route::get('update/{id}', [UserController::class, 'updateForm'])->name('admin.user.update-form');
         Route::put('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
         Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+        Route::get('info/{id}', [UserController::class, 'info'])->name('admin.user.info');
     });
 });
 
 
 Route::prefix('')->middleware('guest')->group(function () {
     Route::view('login','login')->name('login');
-    Route::post('login', [AuthController::class,'login'])->name('user.login');
+    Route::post('login', [AuthController::class,'login'])->middleware([AuthLogger::class])->name('user.login');
 });

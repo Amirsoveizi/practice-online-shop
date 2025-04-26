@@ -21,7 +21,11 @@ class AdminServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('admin.partials.sidebar', function ($view) {
-            $view->with('name', Auth::user()->name);
+            if(Auth::check()) {
+                $view->with('name', Auth::user()->name);
+            }else {
+                $view->with('name', "Guest");
+            }
         });
     }
 }

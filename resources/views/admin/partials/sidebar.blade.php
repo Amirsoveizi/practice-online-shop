@@ -15,7 +15,7 @@
             <img src="https://www.gravatar.com/avatar/52f0fbcbedee04a121cba8dad1174462?s=200&d=mm&r=g" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">{{ $user->name }}</a>
+            <a href="#" class="d-block">{{ $name }}</a>
           </div>
           <div>
             <a href="{{ route('user.logout') }}">logout</a>

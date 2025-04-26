@@ -65,6 +65,15 @@
                                                                 onclick="document.getElementById('edit').submit()">
                                                             </div>
                                                         </form>
+                                                        <form id="info" action="{{ route('admin.user.info',$user->id) }}" method="PUT">
+                                                            @csrf
+                                                            @method('PUT')
+
+                                                            <div 
+                                                                role="button" class=".btn.btn-app fa fa-edit cutom-btn-small blue" 
+                                                                onclick="document.getElementById('edit').submit()">
+                                                            </div>
+                                                        </form>
                                                         <a class= href=""></a>
                                                         
                                                     </div>

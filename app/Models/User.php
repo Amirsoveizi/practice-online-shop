@@ -45,4 +45,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class, 'user_id');
+    }
+
+    public function log($url, $body = null)
+    {
+        // Create a log entry for this user
+        return $this->logs()->create([
+            'url' => $url,
+            'body' => $body,
+        ]);
+    }
 }
