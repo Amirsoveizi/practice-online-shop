@@ -3,6 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AuthLogger;
 use App\Http\Middleware\UserLogger;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -23,6 +26,11 @@ Route::prefix('admin')->middleware(['auth:web',UserLogger::class])->group(functi
         Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         Route::get('info/{id}', [UserController::class, 'info'])->name('admin.user.info');
     });
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('logs', LogController::class);
+
 });
 
 
