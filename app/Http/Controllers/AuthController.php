@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserLoggedInEvent;
 use App\Models\User;
 use Hash;
 use Auth;
@@ -18,7 +19,7 @@ class AuthController extends Controller
         }
 
         Auth::login($user);
-
+        event(new UserLoggedInEvent($user));
         return redirect()->to(route('admin.user.index'));
     }
 

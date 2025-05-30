@@ -108,7 +108,14 @@
             <span class="float-left text-muted text-sm">2 روز</span>
           </a>
           <div class="dropdown-divider"></div>
+          @if(session('email_verification'))
+          <a href="#" class="dropdown-item" style="color: black !important;">
+            <i class="fa fa-file ml-2" style="color: black !important;"></i> {{ session('email_verification') }}
+          </a>
+          @endif
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">مشاهده همه نوتیفیکیشن</a>
+
         </div>
       </li>
       <li class="nav-item">
